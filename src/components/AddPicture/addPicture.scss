@@ -1,0 +1,64 @@
+.addPicture {
+  text-shadow: 1px 1px 5px #000;
+  width: 350px;
+  margin: auto;
+  margin-top: 4rem;
+
+  &__form {
+    position: relative;
+    background-color: #13678a;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 1rem;
+    border: solid 2px #ffb400;
+    border-radius: .2rem;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  &__title {
+    position: absolute;
+    top: -1.5rem;
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 10px #000;
+  }
+
+  &__file, &__format-type, &__picture-orientation, &__submit {
+    margin: 1rem;
+    width: 100%;
+    cursor: default;
+    select {
+      margin-top: .5rem;
+    }
+  }
+
+  &__file {
+    text-shadow: none;
+    margin: .6rem 1rem;
+  }
+
+  &__info {
+    margin: -.5rem 1rem 0 1rem;
+    font-style: italic;
+    font-size: .8rem;
+  }
+
+  &__file, &__submit, &__picture-orientation select, &__format-type select {
+    cursor: pointer;
+    color: #506266;
+    font-size: 1rem;
+    width: fit-content;
+    background-color: #fff8ee;
+    border: none;
+    padding: .3rem .6rem;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+    input {
+      display: none;
+    }
+    &:hover {
+      color: #ffb400;
+    }
+  }
+
+}
+

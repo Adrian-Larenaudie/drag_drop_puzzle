@@ -1,0 +1,65 @@
+.main-container {
+  display: flex;
+  justify-content: space-around;
+  .puzzle {
+    margin: 2rem 0;
+    position: relative;
+    width: calc(350px*16px/9px);
+    height: 350px;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 5px 5px 25px #000;
+    outline: solid 2px #ffb400;
+    border-radius: .2rem;
+    &__piece-space {
+      text-align: center;
+      position: relative;
+      box-sizing: border-box;
+      width: 10%;
+      height: calc(350px/6);
+    }
+    img {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      opacity: 0.2;
+    }
+  }
+
+  .pieces-container { 
+    margin: 2rem 0;
+    width: calc(350px*16px/9px);
+    height: 350px; 
+    position: relative;
+    background-color: #13678a;
+    box-shadow: 3px 5px 5px 5px rgb(78, 78, 78);
+    outline: solid 3px #ffb400;
+    border-radius: .2rem;
+    box-shadow: 5px 5px 25px #000;
+    &__piece {
+      text-align: center;
+      position: relative;
+      box-sizing: border-box;
+      border: solid 3px grey;
+      position: absolute;
+      height: calc(350px/6);
+      width: 10%;
+      background-color: #fff;
+      background-size: calc(350px*16/9) 350px;
+      text-align: center;
+      padding-top: 1rem;
+      cursor: pointer;
+      color: #fff;
+    }
+  }
+}
+
+.hovered {
+  background-color: rgb(255, 255, 255);
+}
+
+.fit-content {
+  position: unset !important;
+  border: none !important;
+  width: 100% !important;
+}

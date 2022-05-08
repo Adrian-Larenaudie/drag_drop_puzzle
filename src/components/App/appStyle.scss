@@ -1,0 +1,22 @@
+@font-face {
+  font-family: 'JetBrainsMono';
+  src: url('../../assets/fonts/JetBrainsMono-Bold.ttf') format('truetype');
+  src: url('../../assets/fonts/JetBrainsMono-Light.ttf') format('tttruetype');
+  src: url('../../assets/fonts/JetBrainsMono-Medium.ttf') format('truetype');
+}
+
+*::selection {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  background-color: #323232 ;
+}
+
+.app {
+  font-family: 'JetBrainsMono';
+  color: #fff8ee;
+}

@@ -49,10 +49,13 @@ class App extends React.Component {
 
   /* Reset all form values to manage next submit properly */
   unsetAllFormValues() {
-    const { isFormComplete, imageOrientation, aspectRatio, chargedImgSrc } = this.state;
+    const { isFormComplete, isChargedImg } = this.state;
     this.setState({
       isFormComplete: !isFormComplete,
-      imageOrientation
+      isChargedImg: !isChargedImg,
+      imageOrientation: '',
+      aspectRatio: '',
+      chargedImgSrc: '',
     });
   };
 
@@ -90,7 +93,7 @@ class App extends React.Component {
   /* Render state and setter to the subcomponents */
   render() {
     //Destructuring state
-    const { isFormComplete, isChargedImg, chargedImgSrc, puzzlePiecesNumber } = this.state;
+    const { isFormComplete, isChargedImg, chargedImgSrc, puzzlePiecesNumber, imageOrientation, aspectRatio } = this.state;
      /* Returned JSX */
     return (
       <div className="app">
@@ -105,6 +108,8 @@ class App extends React.Component {
         {isFormComplete && <Game
           chargedImgSrc={chargedImgSrc} 
           puzzlePiecesNumber={puzzlePiecesNumber}
+          aspectRatio={aspectRatio}
+          imageOrientation={imageOrientation}
         />}
       </div>
     )

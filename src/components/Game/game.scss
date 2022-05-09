@@ -6,8 +6,8 @@
   .puzzle {
     margin: 2rem 0;
     position: relative;
-    width: calc(350px*16px/9px);
-    height: 350px;
+   // width: calc(350px*16px/9px);
+   // height: 350px;
     display: flex;
     flex-wrap: wrap;
     box-shadow: 5px 5px 20px #000;
@@ -44,9 +44,9 @@
       border: solid 3px $yellow;
       position: absolute;
       height: calc(350px/6);
-      width: 10%;
+      //width: 10%;
       background-color: $white;
-      background-size: calc(350px*16/9) 350px;
+      //background-size: calc(350px*16/9) 350px;
       text-align: center;
       padding-top: 1rem;
       cursor: pointer;

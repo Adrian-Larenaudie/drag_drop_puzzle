@@ -3,7 +3,7 @@ import './game.scss';
 import PropTypes from 'prop-types';
 
 /* Componant main function */
-function Game({ chargedImgSrc, puzzlePiecesNumber }) {
+function Game({ chargedImgSrc, puzzlePiecesNumber, aspectRatio, imageOrientation }) {
   /* Function that return a random integer */
   const getRandomInt = (min, max) => {
     min = Math.ceil(min);
@@ -28,8 +28,8 @@ function Game({ chargedImgSrc, puzzlePiecesNumber }) {
     //Variables to determine position coordonates
     let currentCol = 0 //Current column
     let currentRow = 0 //Current row
-    let col = ((350 * 16) / 9) / 10; //Column size (expressed in pixels later)
-    let row = 350 / 6; //Row size (expressed in pixels later)
+    let col = getWidth() / 10; //Column size (expressed in pixels later)
+    let row = getHeight() / 6; //Row size (expressed in pixels later)
     const arrayOfObject = []; //Object array initialization
     //Loop on the number of pieces
     for(let i = 0; i < getAnArrayOfPieces().length; i++) {
@@ -110,12 +110,45 @@ function Game({ chargedImgSrc, puzzlePiecesNumber }) {
 
   /* -------------------------------------------------------------------------------------------------------- */
 
+  /* Size maker:  */
+
+  /* Return a height value wich depend of image orientation's and aspect ratio's values */
+  const getHeight = () => {
+    if(imageOrientation === 'landscape') {
+      return 350;
+    } 
+    return switchOnRatios();
+  };
+
+  /* Return a width value wich depend of image orientation's and aspect ratio's values */
+  const getWidth = () => {
+    if(imageOrientation === 'landscape') {
+      console.log(switchOnRatios());
+      return switchOnRatios();
+    }
+    return 350;
+  };
+
+  /* Switch condition to return a size wich depend of aspect ratio's value  */
+  const switchOnRatios = () => {
+    switch (aspectRatio) {
+      case '16/9':
+        return (350*16)/9;
+      case '4/3':
+        return (350*4)/3;
+      case '3/2':
+        return (350*3)/2;
+      case '1/1':
+        return 350
+    }
+  };
+
   /* Returned JSX by the component (two main elements: puzzle pieces drop area and puzzle pieces area) */
   return (
     <div className="game">
       <div className="main-container">
 
-        <div className="puzzle">
+        <div style={{width: getWidth(), height:getHeight()}} className="puzzle">
             {chargedImgSrc != '' ? <img src={chargedImgSrc}/> : ''}
             {getAnArrayOfPieces().map((piece) => (
               <div 
@@ -138,10 +171,12 @@ function Game({ chargedImgSrc, puzzlePiecesNumber }) {
               id={obj.id}
               style={{
                 backgroundImage: `url(${chargedImgSrc})`,
+                backgroundSize: `${getWidth()}px ${getHeight()}px`,
                 top: `${getRandomInt(0, (350 - 60))}px`,
                 left: `${getRandomInt(0, (622 - 80))}px`,
                 backgroundPosition: `${obj.x}px ${obj.y}px`,
-                zIndex: `${obj.id}`
+                width: `calc((${getWidth()}px * 10)/100)`,
+                zIndex: `${obj.id}`,
               }}
               draggable
               onDragStart={handleOnDragStart}
@@ -160,6 +195,8 @@ function Game({ chargedImgSrc, puzzlePiecesNumber }) {
 Game.propTypes = {
   chargedImgSrc: PropTypes.string.isRequired,
   puzzlePiecesNumber: PropTypes.number.isRequired,
+  aspectRatio: PropTypes.string.isRequired,
+  imageOrientation: PropTypes.string.isRequired,
 };
 /* -------------- */
 

@@ -1,3 +1,5 @@
+@import '../../styles/vars';
+
 .main-container {
   display: flex;
   justify-content: space-around;
@@ -8,8 +10,8 @@
     height: 350px;
     display: flex;
     flex-wrap: wrap;
-    box-shadow: 5px 5px 25px #000;
-    outline: solid 2px #ffb400;
+    box-shadow: 5px 5px 20px #000;
+    outline: solid 2px $yellow;
     border-radius: .2rem;
     &__piece-space {
       text-align: center;
@@ -31,31 +33,32 @@
     width: calc(350px*16px/9px);
     height: 350px; 
     position: relative;
-    background-color: #13678a;
-    box-shadow: 3px 5px 5px 5px rgb(78, 78, 78);
-    outline: solid 3px #ffb400;
+    background-color: $blue;
+    outline: solid 3px $yellow;
     border-radius: .2rem;
     box-shadow: 5px 5px 25px #000;
     &__piece {
       text-align: center;
       position: relative;
       box-sizing: border-box;
-      border: solid 3px grey;
+      border: solid 3px $yellow;
       position: absolute;
       height: calc(350px/6);
       width: 10%;
-      background-color: #fff;
+      background-color: $white;
       background-size: calc(350px*16/9) 350px;
       text-align: center;
       padding-top: 1rem;
       cursor: pointer;
-      color: #fff;
+      color: $white;
     }
   }
 }
 
 .hovered {
-  background-color: rgb(255, 255, 255);
+  transition: .3s;
+  background-color: $white;
+  border: dashed 2px $green;
 }
 
 .fit-content {

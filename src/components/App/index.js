@@ -11,30 +11,77 @@ class App extends React.Component {
     super(props);
     //State properties
     this.state = {
+      //Is the form filled out correctly
+      isFormComplete: false,
+      //Is image is upload
       isChargedImg: false,
-      chargedImg: '',
+      //Image source
+      chargedImgSrc: '',
+      //Number of puzzle pieces
       puzzlePiecesNumber: 60,
+      //Image orientation
+      imageOrientation: '',
+      //Aspect ratio
+      aspectRatio: '',
     };
     //This binding of the setters which are sent in the subcomponents
-    this.uploadChargedImgState = this.uploadChargedImgState.bind(this);
+    this.setFormComplete = this.setFormComplete.bind(this);
+    this.setIsChargedImg = this.setIsChargedImg.bind(this);
     this.setChargedImg = this.setChargedImg.bind(this);
-    this.setChargedImg = this.setChargedImg.bind(this);
+    this.setImageOrientation = this.setImageOrientation.bind(this);
+    this.setAspectRatio = this.setAspectRatio.bind(this);
   };
 
   /* Setter part */
 
   /* Setter to change the bool value wich indicate if an image was uploaded or not */
-  uploadChargedImgState() {
+  setFormComplete() {
+    const { isFormComplete, imageOrientation, aspectRatio, chargedImgSrc } = this.state;
+    if(imageOrientation != '' && aspectRatio != '' && chargedImgSrc != '') {
+      this.setState({
+        isFormComplete: !isFormComplete,
+      });
+    }
+    else {
+      alert('Il faut remplir tous les champ')
+    }
+  };
+
+  /* Reset all form values to manage next submit properly */
+  unsetAllFormValues() {
+    const { isFormComplete, imageOrientation, aspectRatio, chargedImgSrc } = this.state;
+    this.setState({
+      isFormComplete: !isFormComplete,
+      imageOrientation
+    });
+  };
+
+  /* Setter to change the bool value wich indicate if an image was uploaded or not */
+  setIsChargedImg() {
     const { isChargedImg } = this.state;
     this.setState({
       isChargedImg: !isChargedImg,
     });
-  };
+  }
 
   /* Setter to change the state chargedImg */
   setChargedImg(image) {
     this.setState({
-      chargedImg: image,
+      chargedImgSrc: image,
+    });
+  };
+
+  /* Setter to change the image orientation state */
+  setImageOrientation(string) {
+    this.setState({
+      imageOrientation: string,
+    });
+  };
+
+  /* Setter to change the aspect ratio state */
+  setAspectRatio(string) {
+    this.setState({
+      aspectRatio: string,
     });
   };
 
@@ -43,17 +90,20 @@ class App extends React.Component {
   /* Render state and setter to the subcomponents */
   render() {
     //Destructuring state
-    const { isChargedImg, chargedImg, puzzlePiecesNumber } = this.state;
+    const { isFormComplete, isChargedImg, chargedImgSrc, puzzlePiecesNumber } = this.state;
      /* Returned JSX */
     return (
       <div className="app">
         <AddPicture
           isChargedImg={isChargedImg}
-          uploadChargedImgState={this.uploadChargedImgState}
+          setFormComplete={this.setFormComplete}
+          setIsChargedImg={this.setIsChargedImg}
           setChargedImg={this.setChargedImg}
+          setImageOrientation={this.setImageOrientation}
+          setAspectRatio={this.setAspectRatio}
         />
-        {chargedImg != '' && <Game
-          chargedImg={chargedImg} 
+        {isFormComplete && <Game
+          chargedImgSrc={chargedImgSrc} 
           puzzlePiecesNumber={puzzlePiecesNumber}
         />}
       </div>

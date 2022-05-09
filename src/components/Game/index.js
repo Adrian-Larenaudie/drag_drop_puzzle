@@ -3,7 +3,7 @@ import './game.scss';
 import PropTypes from 'prop-types';
 
 /* Componant main function */
-function Game({ chargedImg, puzzlePiecesNumber }) {
+function Game({ chargedImgSrc, puzzlePiecesNumber }) {
   /* Function that return a random integer */
   const getRandomInt = (min, max) => {
     min = Math.ceil(min);
@@ -116,7 +116,7 @@ function Game({ chargedImg, puzzlePiecesNumber }) {
       <div className="main-container">
 
         <div className="puzzle">
-            {chargedImg != '' ? <img src={chargedImg}/> : ''}
+            {chargedImgSrc != '' ? <img src={chargedImgSrc}/> : ''}
             {getAnArrayOfPieces().map((piece) => (
               <div 
                 className="puzzle__piece-space" 
@@ -137,9 +137,9 @@ function Game({ chargedImg, puzzlePiecesNumber }) {
               key={obj.id}
               id={obj.id}
               style={{
-                backgroundImage: `url(${chargedImg})`,
-                top: `${getRandomInt(0, (350 - 50.4))}px`,
-                left: `${getRandomInt(0, (622 - 61.80))}px`,
+                backgroundImage: `url(${chargedImgSrc})`,
+                top: `${getRandomInt(0, (350 - 60))}px`,
+                left: `${getRandomInt(0, (622 - 80))}px`,
                 backgroundPosition: `${obj.x}px ${obj.y}px`,
                 zIndex: `${obj.id}`
               }}
@@ -158,7 +158,7 @@ function Game({ chargedImg, puzzlePiecesNumber }) {
 
 /* Properties types */
 Game.propTypes = {
-  chargedImg: PropTypes.string.isRequired,
+  chargedImgSrc: PropTypes.string.isRequired,
   puzzlePiecesNumber: PropTypes.number.isRequired,
 };
 /* -------------- */

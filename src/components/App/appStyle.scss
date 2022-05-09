@@ -1,3 +1,5 @@
+@import '../../styles/vars';
+
 @font-face {
   font-family: 'JetBrainsMono';
   src: url('../../assets/fonts/JetBrainsMono-Bold.ttf') format('truetype');
@@ -13,10 +15,10 @@
 }
 
 body {
-  background-color: #323232 ;
+  background-color: $mainBackgroundGrey;
 }
 
 .app {
   font-family: 'JetBrainsMono';
-  color: #fff8ee;
+  color: $white;
 }
